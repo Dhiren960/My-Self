@@ -1,0 +1,23 @@
+doctor_schedule = {
+    "Dr. Smith": [],
+    "Dr. Lee": [],
+    "Dr. Adams": []
+}
+
+def is_doctor_available(doctor, date):
+    """Check if the doctor is free on the given date."""
+    return date not in doctor_schedule.get(doctor, [])
+
+def book_appointment(patient, doctor, date):
+    """Book an appointment if the slot is available."""
+    doctor_schedule.setdefault(doctor, []).append(date)
+    print(f"✅ Appointment booked for {patient} with {doctor} on {date}.")
+
+patient_name = input("Enter your name: ")
+doctor_name = input("Enter doctor's name (Dr. Smith, Dr. Lee, Dr. Adams): ")
+preferred_date = input("Enter preferred date (YYYY-MM-DD): ")
+
+if is_doctor_available(doctor_name, preferred_date):
+    book_appointment(patient_name, doctor_name, preferred_date)
+else:
+    print(f"❌ Sorry, {doctor_name} is not available on {preferred_date}.")
