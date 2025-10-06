@@ -1,3 +1,5 @@
+# Hospital Appointment Booking System 
+
 doctor_schedule = {
     "Dr. Smith": [],
     "Dr. Lee": [],
@@ -5,19 +7,31 @@ doctor_schedule = {
 }
 
 def is_doctor_available(doctor, date):
-    """Check if the doctor is free on the given date."""
-    return date not in doctor_schedule.get(doctor, [])
+    """Return True if doctor is free on the selected date."""
+    booked_dates = doctor_schedule.get(doctor, [])
+    return date not in booked_dates
 
 def book_appointment(patient, doctor, date):
-    """Book an appointment if the slot is available."""
+    """Book an appointment for the patient with the doctor."""
     doctor_schedule.setdefault(doctor, []).append(date)
-    print(f"✅ Appointment booked for {patient} with {doctor} on {date}.")
+    print(f"\n✅ Appointment confirmed!")
+    print(f"Patient: {patient}\nDoctor: {doctor}\nDate: {date}\n")
 
-patient_name = input("Enter your name: ")
-doctor_name = input("Enter doctor's name (Dr. Smith, Dr. Lee, Dr. Adams): ")
-preferred_date = input("Enter preferred date (YYYY-MM-DD): ")
+def show_doctor_schedule():
+    """Display current doctor bookings."""
+    print("\n📅 Current Doctor Schedules:")
+    for doc, dates in doctor_schedule.items():
+        print(f" {doc}: {', '.join(dates) if dates else 'No appointments yet.'}")
 
-if is_doctor_available(doctor_name, preferred_date):
-    book_appointment(patient_name, doctor_name, preferred_date)
+# --- Main Program ---
+print("🏥 Welcome to the Hospital Appointment Booking System 🏥")
+print("Available Doctors: Dr. Smith, Dr. Lee, Dr. Adams\n")
+
+patient = input("Enter your name: ").title()
+doctor = input("Enter doctor's name: ").title()
+date = input("Enter preferred date (YYYY-MM-DD): ")
+
+if is_doctor_available(doctor, date):
+    book_appointment(patient, doctor, date)
 else:
-    print(f"❌ Sorry, {doctor_name} is not available on {preferred_date}.")
+    print(f"\n❌ Sorry, {doctor} is not available on {date}. Please choose another date.\n")
