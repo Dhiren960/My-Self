@@ -135,7 +135,6 @@ footer {
   margin-top: 40px;
 }
 
-/* Mobile Responsive */
 @media (max-width: 768px) {
   .avatar {
     float: none;
@@ -150,4 +149,5 @@ footer {
     margin: 15px;
     padding: 15px;
   }
+
 }
