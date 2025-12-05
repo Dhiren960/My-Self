@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Quiz</title>
+</head>
+<body>
+
+<h2>Simple Quiz</h2>
+
+<script>
+  var quiz = [
+    { question: "Capital of India?", answer: "Delhi" },
+    { question: "5 + 5 = ?", answer: "10" },
+    { question: "Language of the web?", answer: "javascript" },
+    { question: "Capital of Bihar?", answer: "Patna" },
+    { question: "120/3", answer: "40" }
+  ]
+
+  var score = 0
+
+  for (var i = 0; i < quiz.length; i++) {
+    var userAnswer = prompt(quiz[i].question)
+
+    userAnswer = userAnswer.toLowerCase().trim()
+
+    if (userAnswer === quiz[i].answer) {
+      alert("Correct")
+      score++
+    } else {
+      alert("Wrong. Answer: " + quiz[i].answer)
+    }
+  }
+
+  alert("Final Score: " + score + " out of " + quiz.length)
+</script>
+
+</body>
+</html>
